@@ -1,4 +1,4 @@
-#include "board.h"
+#include "game.h"
 #include <iostream>
 
 
