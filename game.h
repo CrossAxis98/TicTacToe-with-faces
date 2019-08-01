@@ -45,4 +45,6 @@ void settingPositionOfSprite();
 void endGame();
 bool checkIfEnd(char sign, int row, int column);
 void endGameSubtitles();
+void whatToDo();
+void reset();
 };

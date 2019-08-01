@@ -8,8 +8,7 @@ while(window.isOpen())
 eventsHandling();
 window.clear();
 draw();
-if(checkIfEnd('o', actualRow, actualColumn)) {endGameSubtitles();}
-if(checkIfEnd('x', actualRow, actualColumn)) {endGameSubtitles();}
+if((checkIfEnd('o', actualRow, actualColumn))||(checkIfEnd('x', actualRow, actualColumn))) {endGameSubtitles(); whatToDo();}
 window.display();
 }
 
@@ -46,7 +45,7 @@ secondFigure.loadFromFile("kolko.png");
 backgroundSprite.setTexture(background);
 myFont.loadFromFile( "arial.ttf");
 text.setFont(myFont);
-text.setCharacterSize(180);
+text.setCharacterSize(60);
 text.setFillColor(sf::Color::Red);
 text.setPosition(stringPosition);
 for(int i=0; i<5; i++)
@@ -305,7 +304,43 @@ if(((sign[0][0]==signToCheck)&&(sign[1][1]==signToCheck)&&(sign[2][2]==signToChe
 
 void Board::endGameSubtitles()
 {
-    text.setString("Game \n Over");
+    text.setString("\n Press Space - to\n play again \n\n Press Esc - to\n quit ");
     window.draw(text);
+
+}
+
+
+void Board::whatToDo()
+{
+
+while( window.pollEvent( event ) )
+        {
+
+            if( event.type == sf::Event::Closed )
+                 window.close();
+
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space )
+                 reset();
+                 if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
+                 window.close();
+
+
+        }
+
+
+}
+
+void Board::reset()
+{
+firstFigureCounter=(-1);
+secondFigureCounter=(-1);
+
+for(int i=0; i<3; i++)
+    for(int j=0; j<3; j++)
+        {
+        sign[i][j]='0';
+        }
+
+firstPlayerMove=true;
 
 }
