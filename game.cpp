@@ -8,7 +8,7 @@ while(window.isOpen())
 eventsHandling();
 window.clear();
 draw();
-if((checkIfEnd('o', actualRow, actualColumn))||(checkIfEnd('x', actualRow, actualColumn))) {endGameSubtitles(); whatToDo();}
+if((checkIfEnd('o', actualRow, actualColumn))||(checkIfEnd('x', actualRow, actualColumn))||((firstFigureCounter+secondFigureCounter)==7)) {endGameSubtitles(); whatToDo();}
 window.display();
 }
 
@@ -321,7 +321,8 @@ while( window.pollEvent( event ) )
 
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space )
                  reset();
-                 if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
+
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
                  window.close();
 
 
