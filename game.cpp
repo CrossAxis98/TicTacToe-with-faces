@@ -73,7 +73,7 @@ else
 else
 {
 window.draw(backgroundSprite);
-if((secondFigureCounter<4)&&((firstFigureCounter>=0)||secondFigureCounter>=0))
+if(((secondFigureCounter<4)||(firstFigureCounter<4))&&((firstFigureCounter>=0)||secondFigureCounter>=0))
     {
         for(int i=0; i<=firstFigureCounter; i++)
         {

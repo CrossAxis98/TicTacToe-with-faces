@@ -51,5 +51,4 @@ void endGameSubtitles();
 void whatToDo();
 void reset();
 void menuEvents();
-void startMenu(bool firstImage);
 };
