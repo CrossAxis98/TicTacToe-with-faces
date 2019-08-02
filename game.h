@@ -20,8 +20,8 @@ ninth=9
 class Board
 {
 sf::RenderWindow window;
-sf::Texture background, firstFigure, secondFigure;
-sf::Sprite backgroundSprite, firstFigureSprite[5], secondFigureSprite[5];
+sf::Texture background, firstFigure, secondFigure, firstMenu, secondMenu;
+sf::Sprite backgroundSprite, firstFigureSprite[5], secondFigureSprite[5], firstMenuSprite, secondMenuSprite;
 sf::Event event;
 sf::Vector2i pressedPosition;
 sf::Vector2f stringPosition{10,10};
@@ -34,6 +34,9 @@ std::vector<int> secondPlayerPositions;
 char sign[3][3];
 sf::Font myFont;
 sf::Text text;
+bool start{true};
+bool firstImageMenu{true};
+bool chosenFigure{true};
 public:
 void display();
 void eventsHandling();
@@ -47,4 +50,6 @@ bool checkIfEnd(char sign, int row, int column);
 void endGameSubtitles();
 void whatToDo();
 void reset();
+void menuEvents();
+void startMenu(bool firstImage);
 };

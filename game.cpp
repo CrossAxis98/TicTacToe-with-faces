@@ -5,6 +5,7 @@ void Board::display()
 uploadGraphics();
 while(window.isOpen())
 {
+if(start){ menuEvents();}
 eventsHandling();
 window.clear();
 draw();
@@ -41,8 +42,12 @@ window.create(sf::VideoMode( 512, 512, 32 ), "KolkoIDominik");
 background.loadFromFile("plansza.jpg");
 firstFigure.loadFromFile("iks3.png");
 secondFigure.loadFromFile("kolko.png");
+firstMenu.loadFromFile("firstStartingImage.png");
+secondMenu.loadFromFile("secondStartingImage.png");
 
 backgroundSprite.setTexture(background);
+firstMenuSprite.setTexture(firstMenu);
+secondMenuSprite.setTexture(secondMenu);
 myFont.loadFromFile( "arial.ttf");
 text.setFont(myFont);
 text.setCharacterSize(60);
@@ -57,8 +62,18 @@ secondFigureSprite[i].setTexture(secondFigure);
 
 void Board::draw()
 {
+
+if(start)
+{
+if(firstImageMenu)
+    {window.draw(firstMenuSprite);}
+else
+    {window.draw(secondMenuSprite);}
+}
+else
+{
 window.draw(backgroundSprite);
-if((secondFigureCounter<4)&&(firstFigureCounter>=0))
+if((secondFigureCounter<4)&&((firstFigureCounter>=0)||secondFigureCounter>=0))
     {
         for(int i=0; i<=firstFigureCounter; i++)
         {
@@ -77,7 +92,7 @@ if((secondFigureCounter<4)&&(firstFigureCounter>=0))
     }
 
 
-
+    }
 }
 
 void Board::checkingPressedSector()
@@ -342,6 +357,41 @@ for(int i=0; i<3; i++)
         sign[i][j]='0';
         }
 
-firstPlayerMove=true;
+firstPlayerMove=chosenFigure;
 
 }
+
+void Board::menuEvents()
+{
+while( window.pollEvent( event ) )
+        {
+
+
+            if( event.type == sf::Event::Closed )
+                 window.close();
+
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down )
+            {
+
+                firstPlayerMove=false;
+                firstImageMenu=false;
+                chosenFigure=false;
+
+            }
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up )
+            {
+
+                firstPlayerMove=true;
+                firstImageMenu=true;
+                chosenFigure=true;
+
+            }
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space )
+                 start=false;
+
+
+        }
+
+
+}
+
