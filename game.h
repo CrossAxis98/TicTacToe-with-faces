@@ -32,6 +32,7 @@ bool firstPlayerMove{true};
 std::vector<int> firstPlayerPositions;
 std::vector<int> secondPlayerPositions;
 char sign[3][3];
+char player = 'o', opponent = 'x';
 sf::Font myFont;
 sf::Text text;
 bool start{true};
@@ -51,4 +52,6 @@ void endGameSubtitles();
 void whatToDo();
 void reset();
 void menuEvents();
+
+int evaluate(char board[3][3]);
 };
