@@ -16,6 +16,12 @@ eighth=8,
 ninth=9
 };
 
+struct Move
+{
+int row {-1};
+int column {-1};
+
+};
 
 class Board
 {
@@ -29,8 +35,6 @@ int pressedSector;
 int firstFigureCounter{-1}, secondFigureCounter{-1};
 int actualRow{-1}, actualColumn{-1};
 bool firstPlayerMove{true};
-std::vector<int> firstPlayerPositions;
-std::vector<int> secondPlayerPositions;
 char sign[3][3];
 char player = 'o', opponent = 'x';
 sf::Font myFont;

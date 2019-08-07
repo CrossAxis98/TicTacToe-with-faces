@@ -86,10 +86,7 @@ if(((secondFigureCounter<4)||(firstFigureCounter<4))&&((firstFigureCounter>=0)||
 
 
     }
-    else if(firstFigureCounter>=5)
-    {
-        exit(11);
-    }
+
 
 
     }
@@ -162,21 +159,18 @@ void Board::settingPositionOfSprite()
         {
         case 1:
         firstFigureSprite[firstFigureCounter].setPosition(43,10);
-        firstPlayerPositions.push_back(1);
         sign[0][0]='o';
         actualRow=0;
         actualColumn=0;
         break;
         case 2:
         firstFigureSprite[firstFigureCounter].setPosition(213,10);
-        firstPlayerPositions.push_back(2);
         sign[0][1]='o';
         actualRow=0;
         actualColumn=1;
         break;
         case 3:
         firstFigureSprite[firstFigureCounter].setPosition(383,10);
-        firstPlayerPositions.push_back(3);
         sign[0][2]='o';
         actualRow=0;
         actualColumn=2;
@@ -294,13 +288,7 @@ void Board::settingPositionOfSprite()
 }
 
 
-void Board::endGame()
-{
-auto it=firstPlayerPositions.begin();
-if((!firstPlayerPositions.empty())&&(*it==1)&&(*(it+1)==2)&&(*(it+2)==3))
-    std::cout<<"HEJ:";
 
-}
 
 
 bool Board::checkIfEnd(char signToCheck, int row, int column)
