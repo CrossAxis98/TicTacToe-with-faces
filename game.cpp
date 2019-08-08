@@ -8,10 +8,11 @@ while(window.isOpen())
 if(start){ menuEvents();}
 eventsHandling();
 window.clear();
-if(firstPlayerMove){        findBestMove(sign); }
+if(cpuMove){ findBestMove(sign); cpuMove=false;}
 draw();
 if((checkIfEnd('o', actualRow, actualColumn))||(checkIfEnd('x', actualRow, actualColumn))||((firstFigureCounter+secondFigureCounter)==7)) {endGameSubtitles(); whatToDo();}
 window.display();
+
 }
 
 }
@@ -41,8 +42,10 @@ void Board::uploadGraphics()
 {
 window.create(sf::VideoMode( 512, 512, 32 ), "KolkoIDominik");
 background.loadFromFile("plansza.jpg");
+
 firstFigure.loadFromFile("iks3.png");
 secondFigure.loadFromFile("kolko.png");
+
 firstMenu.loadFromFile("firstStartingImage.png");
 secondMenu.loadFromFile("secondStartingImage.png");
 
@@ -60,6 +63,8 @@ firstFigureSprite[i].setTexture(firstFigure);
 secondFigureSprite[i].setTexture(secondFigure);
 }
 }
+
+
 
 void Board::draw()
 {
@@ -215,6 +220,8 @@ void Board::settingPositionOfSprite()
         std::cout<<"Something wrong with settingPositionOfSprite"<<std::endl;
         }
         firstPlayerMove=false;
+
+
         }
     else
         {
@@ -283,6 +290,7 @@ void Board::settingPositionOfSprite()
         firstPlayerMove=true;
 
         }
+        if(((firstFigureCounter+secondFigureCounter)%2)!=0) cpuMove=true;
 
 }
 
@@ -364,7 +372,7 @@ while( window.pollEvent( event ) )
                 firstImageMenu = false;
                 chosenFigure = false;
 
-
+                player = 'o', opponent = 'x';
 
 
             }
@@ -374,6 +382,8 @@ while( window.pollEvent( event ) )
                 firstPlayerMove=true;
                 firstImageMenu=true;
                 chosenFigure=true;
+
+                player = 'x', opponent = 'o';
 
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space )
