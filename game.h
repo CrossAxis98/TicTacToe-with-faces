@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 enum position
 {
@@ -35,13 +36,15 @@ int pressedSector;
 int firstFigureCounter{-1}, secondFigureCounter{-1};
 int actualRow{-1}, actualColumn{-1};
 bool firstPlayerMove{true};
-char sign[3][3];
-char player = 'o', opponent = 'x';
+char sign[3][3]{{0,0,0}, {0,0,0},{0,0,0}};
+char player = 'x', opponent = 'o';
 sf::Font myFont;
 sf::Text text;
 bool start{true};
 bool firstImageMenu{true};
 bool chosenFigure{true};
+
+bool cpuMove{false};
 public:
 void display();
 void eventsHandling();
@@ -57,5 +60,9 @@ void whatToDo();
 void reset();
 void menuEvents();
 
-int evaluate(char board[3][3]);
+int evaluate(char sign[3][3]);
+bool isMovesLeft(char sign[3][3]);
+int minimax(char sign[3][3], int depth, bool isMax);
+Move findBestMove(char sign[3][3]);
+
 };
