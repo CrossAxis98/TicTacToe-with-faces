@@ -67,5 +67,4 @@ bool isMovesLeft(char sign[3][3]);
 int minimax(char sign[3][3], int depth, bool isMax);
 Move findBestMove(char sign[3][3]);
 void whatSectorChooosenAI(Move m);
-void wyswietl();
 };
