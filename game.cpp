@@ -8,11 +8,23 @@ while(window.isOpen())
 if(start){ menuEvents();}
 eventsHandling();
 window.clear();
-if(cpuMove){ findBestMove(sign); cpuMove=false;}
+if(cpuMove){ findBestMove(sign); checkingPressedSector(); cpuMove=false; wyswietl(); }
 draw();
 if((checkIfEnd('o', actualRow, actualColumn))||(checkIfEnd('x', actualRow, actualColumn))||((firstFigureCounter+secondFigureCounter)==7)) {endGameSubtitles(); whatToDo();}
 window.display();
 
+}
+
+}
+void Board::wyswietl()
+{
+for(int i=0; i!=3; i++)
+{
+    for(int j=0; j!=3; j++)
+        {
+        std::cout<<sign[i][j]<<" ";
+        }
+        std::cout<<std::endl;
 }
 
 }
@@ -30,10 +42,12 @@ while( window.pollEvent( event ) )
 
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
             {
+            if(!cpuMove)
+            {
             givePressedPosition();
 
             checkingPressedSector();
-
+            }
             }
         }
 }
@@ -227,59 +241,59 @@ void Board::settingPositionOfSprite()
         {
         secondFigureCounter++;
 
-        switch(pressedSector)
+        switch(pressedSectorByAI)
         {
         case 1:
         secondFigureSprite[secondFigureCounter].setPosition(35,35);
-        sign[0][0]='x';
+        //sign[0][0]='x';
         actualRow=0;
         actualColumn=0;
         break;
         case 2:
         secondFigureSprite[secondFigureCounter].setPosition(205,35);
-        sign[0][1]='x';
+        //sign[0][1]='x';
         actualRow=0;
         actualColumn=1;
         break;
         case 3:
         secondFigureSprite[secondFigureCounter].setPosition(375,35);
-        sign[0][2]='x';
+        //sign[0][2]='x';
         actualRow=0;
         actualColumn=2;
         break;
         case 4:
         secondFigureSprite[secondFigureCounter].setPosition(35,205);
-        sign[1][0]='x';
+        //sign[1][0]='x';
         actualRow=1;
         actualColumn=0;
         break;
         case 5:
         secondFigureSprite[secondFigureCounter].setPosition(205,205);
-        sign[1][1]='x';
+        //sign[1][1]='x';
         actualRow=1;
         actualColumn=1;
         break;
         case 6:
         secondFigureSprite[secondFigureCounter].setPosition(375,205);
-        sign[1][2]='x';
+        //sign[1][2]='x';
         actualRow=1;
         actualColumn=2;
         break;
         case 7:
         secondFigureSprite[secondFigureCounter].setPosition(35,375);
-        sign[2][0]='x';
+        //sign[2][0]='x';
         actualRow=2;
         actualColumn=0;
         break;
         case 8:
         secondFigureSprite[secondFigureCounter].setPosition(205,375);
-        sign[2][1]='x';
+       // sign[2][1]='x';
         actualRow=2;
         actualColumn=1;
         break;
         case 9:
         secondFigureSprite[secondFigureCounter].setPosition(375,375);
-        sign[2][2]='x';
+        //sign[2][2]='x';
         actualRow=2;
         actualColumn=2;
         break;
@@ -575,7 +589,8 @@ Move Board::findBestMove(char sign[3][3])
 
 
     std::cout<<"KOLUMNA: "<<bestMove.column<<" Wiersz:"<<bestMove.row<<std::endl;
-    //sign[bestMove.row][bestMove.column]=opponent;
+    whatSectorChooosenAI(bestMove);
+    sign[bestMove.row][bestMove.column]=player;
 
     return bestMove;
 }
@@ -586,39 +601,39 @@ void Board::whatSectorChooosenAI(Move m)
 
         if((m.row==0)&&(m.column==0))
         {
-        pressedSector=position::first;
+        pressedSectorByAI=position::first;
         }
         else if((m.row==0)&&(m.column==1))
         {
-        pressedSector=position::second;
+        pressedSectorByAI=position::second;
         }
         else if((m.row==0)&&(m.column==2))
         {
-        pressedSector=position::third;
+        pressedSectorByAI=position::third;
         }
         else if((m.row==1)&&(m.column==0))
         {
-        pressedSector=position::fourth;
+        pressedSectorByAI=position::fourth;
         }
         else if((m.row==1)&&(m.column==1))
         {
-        pressedSector=position::fifth;
+        pressedSectorByAI=position::fifth;
         }
         else if((m.row==1)&&(m.column==2))
         {
-        pressedSector=position::sixth;
+        pressedSectorByAI=position::sixth;
         }
         else if((m.row==2)&&(m.column==0))
         {
-        pressedSector=position::seventh;
+        pressedSectorByAI=position::seventh;
         }
         else if((m.row==2)&&(m.column==1))
         {
-        pressedSector=position::eighth;
+       pressedSectorByAI=position::eighth;
         }
         else if((m.row==2)&&(m.column==2))
         {
-        pressedSector=position::ninth;
+        pressedSectorByAI=position::ninth;
         }
 
       //  settingPositionOfSprite();

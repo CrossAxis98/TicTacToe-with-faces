@@ -32,7 +32,7 @@ sf::Sprite backgroundSprite, firstFigureSprite[5], secondFigureSprite[5], firstM
 sf::Event event;
 sf::Vector2i pressedPosition;
 sf::Vector2f stringPosition{10,10};
-int pressedSector;
+int pressedSector{-1};
 int firstFigureCounter{-1}, secondFigureCounter{-1};
 int actualRow{-1}, actualColumn{-1};
 bool firstPlayerMove{true};
@@ -45,6 +45,8 @@ bool firstImageMenu{true};
 bool chosenFigure{true};
 
 bool cpuMove{false};
+int cpuSector{-1};
+int pressedSectorByAI{-1};
 public:
 void display();
 void eventsHandling();
@@ -64,5 +66,6 @@ int evaluate(char sign[3][3]);
 bool isMovesLeft(char sign[3][3]);
 int minimax(char sign[3][3], int depth, bool isMax);
 Move findBestMove(char sign[3][3]);
-
+void whatSectorChooosenAI(Move m);
+void wyswietl();
 };
