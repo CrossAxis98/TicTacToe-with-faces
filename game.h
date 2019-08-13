@@ -48,7 +48,7 @@ bool cpuMove{false};
 int cpuSector{-1};
 int pressedSectorByAI{-1};
 public:
-void display();
+void play();
 void eventsHandling();
 void uploadGraphics();
 void draw();

@@ -1,6 +1,6 @@
 #include "game.h"
 
-void Board::display()
+void Board::play()
 {
 uploadGraphics();
 while(window.isOpen())
@@ -10,7 +10,7 @@ eventsHandling();
 window.clear();
 if(cpuMove){ findBestMove(sign); checkingPressedSector(); cpuMove=false; wyswietl(); }
 draw();
-if((checkIfEnd('o', actualRow, actualColumn))||(checkIfEnd('x', actualRow, actualColumn))||((firstFigureCounter+secondFigureCounter)==7)) {endGameSubtitles(); whatToDo();}
+if((checkIfEnd('o', actualRow, actualColumn))||(checkIfEnd('x', actualRow, actualColumn))||(!isMovesLeft(sign))) {endGameSubtitles(); whatToDo();}
 window.display();
 
 }
@@ -93,7 +93,7 @@ else
 else
 {
 window.draw(backgroundSprite);
-if(((secondFigureCounter<4)||(firstFigureCounter<4))&&((firstFigureCounter>=0)||secondFigureCounter>=0))
+if((firstFigureCounter>=0)||(secondFigureCounter>=0))
     {
         for(int i=0; i<=firstFigureCounter; i++)
         {
@@ -321,6 +321,7 @@ if((sign[0][column]==signToCheck)&&(sign[1][column]==signToCheck)&&(sign[2][colu
 if(((sign[0][0]==signToCheck)&&(sign[1][1]==signToCheck)&&(sign[2][2]==signToCheck))||((sign[2][0]==signToCheck)&&(sign[1][1]==signToCheck)&&(sign[0][2]==signToCheck)))
     {return true;}
 
+
     return false;
 
 }
@@ -382,11 +383,17 @@ while( window.pollEvent( event ) )
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down )
             {
 
-                firstPlayerMove = false;
+              //  firstPlayerMove = false;
                 firstImageMenu = false;
-                chosenFigure = false;
+                //chosenFigure = false;
+                for(int i=0; i<5; i++)
+{
 
-                player = 'o', opponent = 'x';
+secondFigureSprite[i].setTexture(firstFigure);
+firstFigureSprite[i].setTexture(secondFigure);
+
+}
+                //player = 'o', opponent = 'x';
 
 
             }

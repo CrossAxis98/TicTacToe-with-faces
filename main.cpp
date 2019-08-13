@@ -5,7 +5,7 @@
 int main()
 {
     Board game;
-    game.display();
+    game.play();
 
     return 0;
 }
