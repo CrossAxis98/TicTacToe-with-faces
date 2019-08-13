@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <vector>
 #include <algorithm>
 
 enum position
@@ -42,7 +41,6 @@ sf::Font myFont;
 sf::Text text;
 bool start{true};
 bool firstImageMenu{true};
-bool chosenFigure{true};
 
 bool cpuMove{false};
 int cpuSector{-1};

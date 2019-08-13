@@ -366,7 +366,7 @@ void Board::reset()
             sign[i][j]=0;
         }
     }
-    firstPlayerMove=chosenFigure;
+    firstPlayerMove=true;
 
 }
 
