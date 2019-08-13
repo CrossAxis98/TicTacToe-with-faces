@@ -573,9 +573,57 @@ Move Board::findBestMove(char sign[3][3])
         }
     }
 
-    printf("The value of the best Move is : %d\n\n",
-            bestVal);
+
     std::cout<<"KOLUMNA: "<<bestMove.column<<" Wiersz:"<<bestMove.row<<std::endl;
+    //sign[bestMove.row][bestMove.column]=opponent;
 
     return bestMove;
 }
+
+
+void Board::whatSectorChooosenAI(Move m)
+{
+
+        if((m.row==0)&&(m.column==0))
+        {
+        pressedSector=position::first;
+        }
+        else if((m.row==0)&&(m.column==1))
+        {
+        pressedSector=position::second;
+        }
+        else if((m.row==0)&&(m.column==2))
+        {
+        pressedSector=position::third;
+        }
+        else if((m.row==1)&&(m.column==0))
+        {
+        pressedSector=position::fourth;
+        }
+        else if((m.row==1)&&(m.column==1))
+        {
+        pressedSector=position::fifth;
+        }
+        else if((m.row==1)&&(m.column==2))
+        {
+        pressedSector=position::sixth;
+        }
+        else if((m.row==2)&&(m.column==0))
+        {
+        pressedSector=position::seventh;
+        }
+        else if((m.row==2)&&(m.column==1))
+        {
+        pressedSector=position::eighth;
+        }
+        else if((m.row==2)&&(m.column==2))
+        {
+        pressedSector=position::ninth;
+        }
+
+      //  settingPositionOfSprite();
+
+
+
+}
+
